@@ -1,0 +1,1 @@
+An example of application based on Kivy 
