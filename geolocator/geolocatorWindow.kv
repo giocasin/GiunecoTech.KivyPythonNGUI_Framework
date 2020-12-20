@@ -1,0 +1,95 @@
+#:kivy 2.0.0
+#:import Mapview kivy_garden.mapview.MapView
+<GeoLocatorWindow>:
+    id: main_win
+    orientation: "vertical"
+    spacing: 10
+    space_x: self.size[0]/3
+    canvas.before:
+        Color:
+            rgba: (1,1,1, 1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    BoxLayout:
+        size_hint_y: None
+        height: 50
+        canvas.before:
+            Color:
+                rgba: (.06, .30, .15, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            text: "Geo Locator"
+            bold: True
+            size_hint_x: .9
+    BoxLayout:
+        orientation: 'vertical'
+        padding: main_win.space_x, 10
+        #spacing: 20
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 10
+            size_hint_y: None
+            height: 100
+            Label:
+                id: info
+                text: ''
+                markup: True
+                size_hint_y: None
+                height: 20
+            TextInput:
+                id: location_field
+                hint_text: "Address or Location"
+                multiline: False
+                focus: True
+                on_text_validate: root.get_coordinates()
+        Label:
+            id: sp
+            size_hint_y: None
+            height: 40
+        Button:
+            text: "Get Coordinates"
+            size_hint_y: None
+            height: 40
+            background_color: (.06,.45,.45, 1)
+            background_normal: ''
+            on_release: root.get_coordinates()
+        Label:
+            id: sp
+            size_hint_y: None
+            height: 40
+        BoxLayout:
+            id: map_container
+            opacity: 1 if root.show_map else 0
+            disabled: False if root.show_map else True
+            MapView:
+                id: map
+                zoom: 1
+                height: 200
+        GridLayout:
+            cols: 2
+            row_force_default: True
+            row_default_height: 40
+            Button:
+                id: btn_clear_map
+                text: "Clear Map"
+                size_hint_y: None
+                height: 40
+                background_color: (.06,.45,.45, 1)
+                background_normal: ''
+                opacity: 1 if root.show_map else 0
+                disabled: False if root.show_map else True
+                on_release: root.clear_map()
+            Button:
+                id: btn_hide_map
+                text: "Hide Map"
+                size_hint_y: None
+                height: 40
+                background_color: (.06,.45,.45, 1)
+                background_normal: ''
+                opacity: 1 if root.show_map else 0
+                disabled: False if root.show_map else True
+                on_release: root.hide_map()
