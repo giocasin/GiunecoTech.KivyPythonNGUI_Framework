@@ -7,6 +7,9 @@ from kivy.lang import Builder
 from kivy_garden.mapview import MapView, MapMarker
 from kivy.properties import BooleanProperty
 
+Builder.load_file('geolocator/geolocatorWindow.kv')
+
+
 class GeoLocatorWindow(BoxLayout):
     markers = []
     show_map = BooleanProperty(False)
