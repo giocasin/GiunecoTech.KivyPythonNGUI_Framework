@@ -1,0 +1,3 @@
+title=<GeoLocator>
+author=<Gioele Gaggio>
+orientation=<portrait>
